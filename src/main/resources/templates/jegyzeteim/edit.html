@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Jegyzet szerkesztő</title>
+
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <form method="post"
+                  th:action="@{/jegyzeteim/update}">
+                <div class="form-group">
+                    <label for="name">Jegyzet módósító adatlap</label>
+                </div>
+                <div class="form-group">
+                    <label for="name">ID</label>
+                    <input type="text"
+                           id="id"
+                           name="id"
+                           readonly
+                           class="form-control"
+                           th:value="${jegyzeteim.id}"/>
+                </div>
+                <div class="form-group">
+                    <label for="name">Cím</label>
+                    <input type="text"
+                           id="title"
+                           name="title"
+                           class="form-control"
+                           th:value="${jegyzeteim.title}"/>
+                </div>
+                <div class="form-group">
+                    <label for="genre">Jegyzet</label>
+                    <input type="text"
+                           id="note"
+                           name="note"
+                           class="form-control"
+                           th:value="${jegyzeteim.note}"/>
+
+                <button class="btn btn-primary"
+                        type="submit">Módosít
+                </button>
+                <a th:href="@{/jegyzeteim}"
+                   class="btn btn-secondary"
+                   type="submit">Mégsem</a>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

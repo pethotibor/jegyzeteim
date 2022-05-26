@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Jegyzeteim</title>
+
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div class="container">
+    <h3 class="pt-5">Jegyzetim</h3>
+
+    <a th:href="@{/jgyzeteim/create}"
+       type="button"
+       class="btn btn-info">Új jegyzet írása</a>
+
+    <table class="table table-striped pt-5">
+        <caption>Jegyzeteim</caption>
+        <thread>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Cím</th>
+                <th scope="col">Jegyezet</th>
+                <th scope="col">Műveletek</th>
+            </tr>
+        </thread>
+        <tbody>
+        <tr th:each="jgyzeteim: ${jegyzeteim}">
+            <th scope="row"
+                th:text="${jegyzeteim.id}"></th>
+            <td th:text="${jegyzeteim.title}"></td>
+            <td th:text="${jegyzeteim.note}"></td>
+            <td>
+                <a th:href="@{'/jgyzeteim/' + ${jegyzeteim.id}}"
+                   type="button"
+                   class="btn btn-warning">Szerkesztés</a>
+                <a th:href="@{'/jegyzeteim/' + ${jegyzeteim.id} +  '/delete'}"
+                   type="button"
+                   class="btn btn-danger">Törlés</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>
