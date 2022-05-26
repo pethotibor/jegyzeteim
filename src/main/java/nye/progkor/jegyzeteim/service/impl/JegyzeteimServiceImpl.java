@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.boot.jdbc.DatabaseDriver;
+
 import nye.progkor.jegyzeteim.model.Jegyzeteim;
 
 import nye.progkor.jegyzeteim.model.exception.NotFoundException;
@@ -39,20 +41,33 @@ public class JegyzeteimServiceImpl implements JegyzeteimService{
 
 	@Override
 	public Jegyzeteim createJegyzeteim(Jegyzeteim jegyzeteim) {
-		// TODO Auto-generated method stub
-		return null;
+		jegyzeteim.setId(getNextId());
+		dataBase.add(jegyzeteim);
+		return jegyzeteim;
 	}
 
 	@Override
 	public Jegyzeteim updateJegyzeteim(Long id, Jegyzeteim jegyzeteimChange) {
-		// TODO Auto-generated method stub
-		return null;
+		final Jegyzeteim jegyzeteim = getJegyzeteim(id);
+		jegyzeteim.setTitle(jegyzeteim.getTitle());
+		jegyzeteim.setNote(jegyzeteim.getNote());
+		return jegyzeteim;
 	}
 
 	@Override
 	public void deleteJegyzeteim(Long id) {
-		// TODO Auto-generated method stub
-		
+		final Jegyzeteim jegyzeteim = getJegyzeteim(id);
+		dataBase.remove(jegyzeteim);
+	
+	
 	}
 
+	private long getNextId() {
+		return getLastId() + 1L;
+	}
+	
+	private long gtLastId() {
+		return dataBase.stream
+	}
+	
 }
