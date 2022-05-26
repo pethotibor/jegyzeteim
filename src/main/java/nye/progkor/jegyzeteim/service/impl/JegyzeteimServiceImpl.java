@@ -1,6 +1,7 @@
   package nye.progkor.jegyzeteim.service.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import nye.progkor.jegyzeteim.model.Jegyzeteim;
@@ -8,11 +9,19 @@ import nye.progkor.jegyzeteim.service.JegyzeteimService;
 
 public class JegyzeteimServiceImpl implements JegyzeteimService{
 
-		
+	public static final List<Jegyzeteim> DATA_BASE = new ArrayList<>();
+	
+	static {
+		DATA_BASE.add(new Jegyzeteim(1L, "Megnezendo filmek", "A galaxis őrzői\nFlash - A Villám\nLegenda vagyok"));
+		DATA_BASE.add(new Jegyzeteim(2L, "Bevaslo lista", "Tej\nCukor\nTojas\nKenyer"));
+
+	}
+	
+	
 	@Override
 	public List<Jegyzeteim> getAllJegyzeteim() {
 		// TODO Auto-generated method stub
-		return null;
+		return Collections.unmodifiableList(DATA_BASE);
 	}
 
 	@Override
