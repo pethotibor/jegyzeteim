@@ -1,11 +1,15 @@
-  package nye.progkor.jegyzeteim.service.impl;
+package nye.progkor.jegyzeteim.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import nye.progkor.jegyzeteim.model.Jegyzeteim;
+
+import nye.progkor.jegyzeteim.model.exception.NotFoundException;
 import nye.progkor.jegyzeteim.service.JegyzeteimService;
+
+
 
 public class JegyzeteimServiceImpl implements JegyzeteimService{
 
@@ -27,7 +31,10 @@ public class JegyzeteimServiceImpl implements JegyzeteimService{
 	@Override
 	public Jegyzeteim getJegyzeteim(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return DATA_BASE.stream()
+				.filter(jegyzeteim -> jegyzeteim.getId().equals(id))
+				.findFirst()
+				.orElseThrow(NotFoundException::new));
 	}
 
 	@Override
