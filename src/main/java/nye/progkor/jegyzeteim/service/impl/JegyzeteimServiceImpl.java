@@ -67,7 +67,10 @@ public class JegyzeteimServiceImpl implements JegyzeteimService{
 	}
 	
 	private long gtLastId() {
-		return dataBase.stream
+		return dataBase.stream()
+				.mapToLong(Jegyzeteim::getId)
+				.max()
+				.orElse(0);
 	}
 	
 }
