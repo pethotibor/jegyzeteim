@@ -2,63 +2,43 @@ package nye.progkor.jegyzeteim.model;
 
 public class Jegyzeteim {
 
-	
-	
 	private Long id;
 	private String title;
 	private String note;
 
-	
-	
 	public Jegyzeteim() {
 	}
-
-
 
 	public Jegyzeteim(Long id, String title, String note) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.note = note;
- }
-
-
+	}
 
 	public Long getId() {
 		return id;
 	}
 
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 
 	public String getTitle() {
 		return title;
 	}
 
-
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
-
 
 	public String getNote() {
 		return note;
 	}
 
-
-
 	public void setNote(String note) {
 		this.note = note;
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -69,8 +49,6 @@ public class Jegyzeteim {
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -99,11 +77,9 @@ public class Jegyzeteim {
 		return true;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Jegyzeteim [id=" + id + ", title=" + title + ", note=" + note + "]";
 	}
- 
+
 }
