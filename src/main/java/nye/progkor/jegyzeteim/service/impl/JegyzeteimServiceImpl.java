@@ -12,16 +12,21 @@ import nye.progkor.jegyzeteim.model.exception.NotFoundException;
 import nye.progkor.jegyzeteim.service.JegyzeteimService;
 
 
-
+@Service
 public class JegyzeteimServiceImpl implements JegyzeteimService{
 
-	public static final List<Jegyzeteim> DATA_BASE = new ArrayList<>();
+	private final List<Jegyzeteim> dataBase = new ArrayList<>();
 	
-	static {
-		DATA_BASE.add(new Jegyzeteim(1L, "Megnezendo filmek", "A galaxis őrzői\nFlash - A Villám\nLegenda vagyok"));
-		DATA_BASE.add(new Jegyzeteim(2L, "Bevaslo lista", "Tej\nCukor\nTojas\nKenyer"));
-
+	@Autowired
+	public JegyzereimServiceImpl() {
+		dataBase.add(new Jegyzeteim(1L, "Megnezendo filmek", "A galaxis őrzői\nFlash - A Villám\nLegenda vagyok"));
+		dataBase.add(new Jegyzeteim(2L, "Bevaslo lista", "Tej\nCukor\nTojas\nKenyer"));
 	}
+	
+	public JegyzeteimServiceImpl(final List<Jegyzeteim> jegyzeteim) {
+		dataBase.add(jegyzeteim);
+	}
+	
 	
 	
 	@Override
@@ -31,23 +36,23 @@ public class JegyzeteimServiceImpl implements JegyzeteimService{
 	}
 
 	@Override
-	public Jegyzeteim getJegyzeteim(Long id) {
+	public Jegyzeteim getJegyzeteim(final Long id) {
 		// TODO Auto-generated method stub
-		return DATA_BASE.stream()
+		return dataBase.stream()
 				.filter(jegyzeteim -> jegyzeteim.getId().equals(id))
 				.findFirst()
 				.orElseThrow(NotFoundException::new));
 	}
 
 	@Override
-	public Jegyzeteim createJegyzeteim(Jegyzeteim jegyzeteim) {
+	public Jegyzeteim createJegyzeteim(final Jegyzeteim jegyzeteim) {
 		jegyzeteim.setId(getNextId());
 		dataBase.add(jegyzeteim);
 		return jegyzeteim;
 	}
 
 	@Override
-	public Jegyzeteim updateJegyzeteim(Long id, Jegyzeteim jegyzeteimChange) {
+	public Jegyzeteim updateJegyzeteim(final Long id,final Jegyzeteim jegyzeteimChange) {
 		final Jegyzeteim jegyzeteim = getJegyzeteim(id);
 		jegyzeteim.setTitle(jegyzeteim.getTitle());
 		jegyzeteim.setNote(jegyzeteim.getNote());
@@ -55,7 +60,7 @@ public class JegyzeteimServiceImpl implements JegyzeteimService{
 	}
 
 	@Override
-	public void deleteJegyzeteim(Long id) {
+	public void deleteJegyzeteim(final Long id) {
 		final Jegyzeteim jegyzeteim = getJegyzeteim(id);
 		dataBase.remove(jegyzeteim);
 	
